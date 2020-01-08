@@ -10,7 +10,9 @@ services:
       - db:/var/lib/ldap
       - cfg:/etc/ldap/slapd.d
     networks:
-      - default
+      default:
+        aliases:
+          - ldap
     env_file:
       - .env/ldap
       - .env/deploy.ldap
