@@ -4,7 +4,7 @@ version: '2.4'
 services:
 
   ldap:
-    container_name: ldap
+    container_name: ldap-server
     image: osixia/openldap:1.3.0
     volumes:
       - db:/var/lib/ldap
@@ -15,10 +15,21 @@ services:
       - .env/ldap
       - .env/deploy.ldap
 
+  webgui:
+    container_name: ldap-webgui
+    image: fjudith/pwm
+    volumes:
+      - pwm:/usr/share/pwm
+    networks:
+      - default
+    depends_on:
+      - ldap
+
 
 volumes:
   db:
   cfg:
+  pwm:
 
 networks:
   default:
