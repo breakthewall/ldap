@@ -20,6 +20,8 @@ services:
     image: fjudith/pwm
     volumes:
       - pwm:/usr/share/pwm
+    ports:
+      - "8888:8080"
     networks:
       - default
     depends_on:
